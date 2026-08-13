@@ -1,0 +1,36 @@
+﻿[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "historical-cartography-research-advisor"
+version = "1.0.0"
+description = "A modular, registry-driven Claude Skill for analyzing, dating, and researching historical maps."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Historical Cartography Research Advisor Contributors" }]
+keywords = ["claude-skill", "historical-cartography", "antique-maps", "cartobibliography", "agent"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: GIS",
+]
+dependencies = []
+
+[project.optional-dependencies]
+yaml = ["PyYAML>=6.0"]
+validation = ["jsonschema>=4.0"]
+dev = ["pytest>=7", "jsonschema>=4.0", "PyYAML>=6.0"]
+
+[project.scripts]
+hcra-demo = "scripts.demo_cli:main"
+hcra-validate = "scripts.validate_schemas:main"
+
+[tool.setuptools]
+
+[tool.setuptools.packages.find]
+include = ["config*", "skill*", "scripts*"]
+exclude = ["tests*", "scripts*"]
+

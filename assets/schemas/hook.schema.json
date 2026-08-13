@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://historical-cartography-research-advisor/schemas/hook.schema.json",
+  "title": "Hook Definition",
+  "description": "Schema for a hook registered in the registry.",
+  "type": "object",
+  "required": ["name", "events"],
+  "additionalProperties": false,
+  "properties": {
+    "name": { "type": "string", "minLength": 1 },
+    "events": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Subscribed event names; empty array means subscribe to all events."
+    }
+  }
+}

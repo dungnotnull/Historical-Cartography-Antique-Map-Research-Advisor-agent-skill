@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://historical-cartography-research-advisor/schemas/provenance-report.schema.json",
+  "title": "Provenance & Materials Report",
+  "description": "Schema for the provenance/materials sub-report (ProvenanceMaterialsAdvisor output).",
+  "type": "object",
+  "required": ["advisor", "methodology", "summary", "findings", "confidence"],
+  "additionalProperties": false,
+  "properties": {
+    "advisor": { "const": "provenance_materials" },
+    "methodology": { "type": "string" },
+    "summary": { "type": "string" },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type", "motif", "date_range"],
+        "properties": {
+          "type": { "enum": ["watermark_record", "tool_output"] },
+          "motif": { "type": "string" },
+          "mills": { "type": "array", "items": { "type": "string" } },
+          "date_range": { "type": "string" },
+          "source": { "type": "string" }
+        }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["methodology", "finding", "confidence_basis"],
+        "properties": {
+          "methodology": { "type": "string" },
+          "finding": { "type": "string" },
+          "confidence_basis": { "type": "string" }
+        }
+      }
+    },
+    "confidence": { "enum": ["low", "medium", "high"] },
+    "requires_professional_referral": { "type": "boolean" },
+    "authentication_triggers": { "type": "array", "items": { "type": "string" } },
+    "references_used": { "type": "array", "items": { "type": "string" } },
+    "tools_invoked": { "type": "array", "items": { "type": "string" } },
+    "notes": { "type": "array", "items": { "type": "string" } }
+  }
+}

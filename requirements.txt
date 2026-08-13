@@ -1,0 +1,4 @@
+﻿# Runtime dependencies (all optional — the skill runs on the Python stdlib alone).
+# Install for richer behaviour:
+PyYAML>=6.0          # parsing config/defaults.yaml (optional; env defaults used if absent)
+jsonschema>=4.0      # strict schema validation in scripts/validate_schemas.py (optional; fallback used if absent)

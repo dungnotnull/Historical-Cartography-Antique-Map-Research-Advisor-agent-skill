@@ -1,0 +1,28 @@
+﻿# Historical Cartography Research Advisor — default configuration.
+# Every value here can be overridden by an environment variable (see config/settings.py).
+# This file is intentionally human-readable; it is NOT required for the skill to run.
+
+app_name: historical-cartography-research-advisor
+environment: production            # development | staging | production | test
+log_level: INFO                    # DEBUG | INFO | WARNING | ERROR | CRITICAL
+
+llm:
+  provider: fallback               # fallback | anthropic | openai | custom
+  model: claude-sonnet-4-5
+  temperature: 0.2                 # 0.0 - 2.0; low temperature for reproducible analysis
+  max_tokens: 4096
+  request_timeout_seconds: 30
+  max_retries: 3
+  retry_backoff_seconds: 1.5
+  fallback_on_error: true          # always serve a structured answer even if the model call fails
+
+flags:
+  enable_authentication_referral_guard: true   # always-on accredited-appraiser disclaimer
+  enable_chain_of_thought_routing: true        # router emits explicit routing reasoning
+  enable_tool_invocation: true                 # sub-advisors may call registered tools
+  enable_hook_events: true                     # emit lifecycle / state events
+  enable_provenance_research: true
+  enable_material_analysis: true
+  enable_structured_logging: true
+  strict_disclaimer_mode: true                 # refuse to drop disclaimer even if asked
+  max_concurrent_sub_advisors: 4               # cap parallel sub-advisor execution

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://historical-cartography-research-advisor/schemas/router-decision.schema.json",
+  "title": "Router Decision",
+  "description": "Auditable chain-of-thought routing decision emitted by HistoricalCartographyRouter.route().",
+  "type": "object",
+  "required": ["request_id", "rationale", "selected_advisors", "reasoning_steps", "fallback_used"],
+  "additionalProperties": false,
+  "properties": {
+    "request_id": { "type": "string" },
+    "rationale": { "type": "string" },
+    "selected_advisors": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "reasoning_steps": { "type": "array", "items": { "type": "string" } },
+    "fallback_used": { "type": "boolean" }
+  }
+}

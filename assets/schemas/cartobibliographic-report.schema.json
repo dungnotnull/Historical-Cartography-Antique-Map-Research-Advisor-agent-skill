@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://historical-cartography-research-advisor/schemas/cartobibliographic-report.schema.json",
+  "title": "Cartobibliographic Attribution Report",
+  "description": "Schema for the cartobibliographic attribution sub-report (CartobibliographyAdvisor output).",
+  "type": "object",
+  "required": ["advisor", "methodology", "summary", "findings", "confidence"],
+  "additionalProperties": false,
+  "properties": {
+    "advisor": { "const": "cartobibliography" },
+    "methodology": { "type": "string" },
+    "summary": { "type": "string" },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type", "maker", "active"],
+        "properties": {
+          "type": { "const": "maker_record" },
+          "maker": { "type": "string" },
+          "active": { "type": "string" },
+          "role": { "type": "string" },
+          "source": { "type": "string" }
+        }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["methodology", "finding", "confidence_basis"],
+        "properties": {
+          "methodology": { "type": "string" },
+          "finding": { "type": "string" },
+          "confidence_basis": { "type": "string" }
+        }
+      }
+    },
+    "confidence": { "enum": ["low", "medium", "high"] },
+    "requires_professional_referral": { "type": "boolean" },
+    "authentication_triggers": { "type": "array", "items": { "type": "string" } },
+    "references_used": { "type": "array", "items": { "type": "string" } },
+    "tools_invoked": { "type": "array", "items": { "type": "string" } },
+    "notes": { "type": "array", "items": { "type": "string" } }
+  }
+}

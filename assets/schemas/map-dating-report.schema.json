@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://historical-cartography-research-advisor/schemas/map-dating-report.schema.json",
+  "title": "Map-Dating Research Report",
+  "description": "Schema for the multi-axis map-dating report produced by the router (AggregatedReport).",
+  "type": "object",
+  "required": ["request_id", "user_prompt_fingerprint", "disclaimer", "routing", "advisor_results", "requires_professional_referral", "elapsed_ms"],
+  "additionalProperties": false,
+  "properties": {
+    "request_id": { "type": "string" },
+    "user_prompt_fingerprint": { "type": "string", "pattern": "^[0-9a-f]{6,16}$" },
+    "disclaimer": { "type": "string", "minLength": 1 },
+    "referral_block": { "type": "string" },
+    "requires_professional_referral": { "type": "boolean" },
+    "authentication_triggers": { "type": "array", "items": { "type": "string" } },
+    "routing": { "$ref": "https://historical-cartography-research-advisor/schemas/router-decision.schema.json" },
+    "advisor_results": { "type": "array", "items": { "$ref": "#/$defs/advisorResult" } },
+    "elapsed_ms": { "type": "integer", "minimum": 0 },
+    "notes": { "type": "array", "items": { "type": "string" } }
+  },
+  "$defs": {
+    "advisorResult": {
+      "type": "object",
+      "required": ["advisor", "methodology", "summary", "confidence", "requires_professional_referral"],
+      "additionalProperties": false,
+      "properties": {
+        "advisor": { "type": "string" },
+        "methodology": { "type": "string" },
+        "summary": { "type": "string" },
+        "evidence": { "type": "array", "items": { "type": "object" } },
+        "findings": { "type": "array", "items": { "type": "object" } },
+        "confidence": { "enum": ["low", "medium", "high"] },
+        "requires_professional_referral": { "type": "boolean" },
+        "authentication_triggers": { "type": "array", "items": { "type": "string" } },
+        "references_used": { "type": "array", "items": { "type": "string" } },
+        "tools_invoked": { "type": "array", "items": { "type": "string" } },
+        "notes": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}
